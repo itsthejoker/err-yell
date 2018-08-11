@@ -45,7 +45,7 @@ class Yell(BotPlugin):
     )
     def yell(self, msg, args):
         """Everyone's a little bit hard of hearing sometimes."""
-        return "{}: {}".format(self.prev_message.frm, self.prev_message.body.upper())
+        return "{}: {}".format(self.prev_message.frm.person, self.prev_message.body.upper())
 
 
     def callback_message(self, message: Message):
