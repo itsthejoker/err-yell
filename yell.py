@@ -11,13 +11,13 @@ w+h+a+t*[.!?\s]*$|
 w+a+t+[.!?\s]*$|
 wot[.!?\s]*$|
 h+u+h+[.!?\s]*$|
-w+h+a+t+ n+o+w+[.!?\s]*$|
-repeat+ that+[.!?\s]*$|
-come+ again+[.!?\s]*$|
-wha+t+ do+ (yo+u+|u+) mean+|
-w+h+a+t+ (.+)?did+ (you+|u+) (just )?sa+y+|
-i+ ca+n'?t+ h+e+a+r+( (you+|u+))?|
-i'?m hard of hearing
+w+h+a+t+\ n+o+w+[.!?\s]*$|
+repeat+\ that+[.!?\s]*$|
+come+\ again+[.!?\s]*$|
+wha+t+\ do+\ (yo+u+|u+)\ mean+|
+w+h+a+t+\ (.+)?did+\ (you+|u+)\ (just\ )?sa+y+|
+i+\ ca+n'?t+\ h+e+a+r+(\ (you+|u+))?|
+i'?m\ hard\ of\ hearing
 """,
     re.VERBOSE | re.MULTILINE |re.IGNORECASE
 )
