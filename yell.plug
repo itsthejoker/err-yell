@@ -1,0 +1,9 @@
+[Core]
+Name = Yell
+Module = yell
+
+[Python]
+Version = 2+
+
+[Documentation]
+Description = Hard of hearing people need to read too
