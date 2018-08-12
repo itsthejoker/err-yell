@@ -24,7 +24,10 @@ i'?m\ hard\ of\ hearing
 
 
 class Yell(BotPlugin):
-    """Plugin that yells at people when they can't hear."""
+    """
+    Plugin that yells at people when they can't hear. Built for the Slack
+    integration.
+    """
 
     @re_botcmd(
         pattern=r"""
@@ -45,10 +48,17 @@ class Yell(BotPlugin):
     )
     def yell(self, msg, args):
         """Everyone's a little bit hard of hearing sometimes."""
-        return "{}: {}".format(self.prev_message.frm.person, self.prev_message.body.upper())
+        return "{}: {}".format(
+            self.previous_message_dict[msg.frm.room].frm.person,
+            self.previous_message_dict[msg.frm.room].body.upper()
+        )
 
 
     def callback_message(self, message: Message):
         # back up the last message sent that doesn't match the patterns.
+        # Keep a running dict based on the channel it came from.
+        if not hasattr(self, 'previous_message_dict'):
+            self.previous_message_dict = dict()
+
         if not re.match(pattern, message.body):
-            self.prev_message = message
+            self.previous_message_dict[message.frm.room] = message
