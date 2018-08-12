@@ -48,9 +48,17 @@ class Yell(BotPlugin):
     )
     def yell(self, msg, args):
         """Everyone's a little bit hard of hearing sometimes."""
+        if msg.frm.room.name in self.previous_message_dict:
+            previous_message = self.previous_message_dict[msg.frm.room.name]
+        else:
+            return (
+                "I KNOW YOU'RE HAVING TROUBLE BUT I JUST JOINED THIS ROOM! "
+                "I DON'T KNOW WHAT'S GOING ON EITHER."
+            )
+        # noinspection PyUnresolvedReferences
         return "{}: {}".format(
-            self.previous_message_dict[msg.frm.room.name].frm.person,
-            self.previous_message_dict[msg.frm.room.name].body.upper()
+            previous_message.frm.person,
+            previous_message.body.upper()
         )
 
 
