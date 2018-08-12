@@ -49,8 +49,8 @@ class Yell(BotPlugin):
     def yell(self, msg, args):
         """Everyone's a little bit hard of hearing sometimes."""
         return "{}: {}".format(
-            self.previous_message_dict[msg.frm.room].frm.person,
-            self.previous_message_dict[msg.frm.room].body.upper()
+            self.previous_message_dict[msg.frm.room.name].frm.person,
+            self.previous_message_dict[msg.frm.room.name].body.upper()
         )
 
 
@@ -61,4 +61,4 @@ class Yell(BotPlugin):
             self.previous_message_dict = dict()
 
         if not re.match(pattern, message.body):
-            self.previous_message_dict[message.frm.room] = message
+            self.previous_message_dict[message.frm.room.name] = message
