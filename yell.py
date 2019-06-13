@@ -5,10 +5,9 @@ from errbot import Message
 
 # errbot doesn't let you pass in a pre-compiled regex AFAICT. So we do it twice,
 # I guess
-pattern = re.compile(
-    r"""
+raw_pattern = r"""
 w+h+a+t*[.!?\s]*$|
-w+a+t+[.!?\s]*$|
+w+[a]*+t+[.!?\s]*$|
 wot[.!?\s]*$|
 h+u+h+[.!?\s]*$|
 w+h+a+t+\ n+o+w+[.!?\s]*$|
@@ -17,10 +16,11 @@ come+\ again+[.!?\s]*$|
 wha+t+\ do+\ (yo+u+|u+)\ mean+|
 w+h+a+t+\ (.+)?did+\ (you+|u+)\ (just\ )?sa+y+|
 i+\ ca+n'?t+\ h+e+a+r+(\ (you+|u+))?|
-i'?m\ hard\ of\ hearing
-""",
-    re.VERBOSE | re.MULTILINE |re.IGNORECASE
-)
+i'?m\ hard\ of\ hearing|
+que[.!?\s]*$
+"""
+
+pattern = re.compile(raw_pattern, re.VERBOSE | re.MULTILINE | re.IGNORECASE)
 
 
 class Yell(BotPlugin):
@@ -30,19 +30,7 @@ class Yell(BotPlugin):
     """
 
     @re_botcmd(
-        pattern=r"""
-            w+h+a+t*[.!?\s]*$|
-            w+a+t+[.!?\s]*$|
-            wot[.!?\s]*$|
-            h+u+h+[.!?\s]*$|
-            w+h+a+t+\ n+o+w+[.!?\s]*$|
-            repeat+\ that+[.!?\s]*$|
-            come+\ again+[.!?\s]*$|
-            wha+t+\ do+\ (yo+u+|u+)\ mean+|
-            w+h+a+t+\ (.+)?did+\ (you+|u+)\ (just\ )?sa+y+|
-            i+\ ca+n'?t+\ h+e+a+r+(\ (you+|u+))?|
-            i'?m\ hard\ of\ hearing
-        """,
+        pattern=raw_pattern,
         prefixed=False,
         flags=re.IGNORECASE | re.MULTILINE | re.VERBOSE
     )
